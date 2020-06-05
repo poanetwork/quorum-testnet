@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  node:
+    restart: "on-failure"
+    image: quorumengineering/quorum:latest
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "--proxy", "off", "http://localhost:8545"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        DDIR=/qdata/dd
+        GENESIS_FILE="$${DDIR}/genesis.json"
+        mkdir -p $${DDIR}
+        if [ -z "$$(ls -A $${DDIR})" ]; then
+          cp -RT /configs $${DDIR}
+          mkdir $${DDIR}/keystore
+          mkdir $${DDIR}/geth
+          cp /validator_config/info $${DDIR}/keystore
+          cp /validator_config/nodekey $${DDIR}/geth
+        fi
+        geth --datadir $${DDIR} init $${GENESIS_FILE}
+        geth --config /configs/geth-config.toml --verbosity 5 --gcmode archive --nodekey $${DDIR}/geth/nodekey --mine --minerthreads 1
+    hostname: node
+    ports:
+      - "8545:8545"
+      - "8645:8645"
+    environment:
+      PRIVATE_CONFIG: ignore
+    volumes:
+      - node_vol:/qdata
+      - ./configs:/configs:ro
+      - ./validators/0:/validator_config:ro
+volumes:
+  node_vol:
