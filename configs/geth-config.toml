@@ -50,10 +50,7 @@ Blocks = 20
 Percentile = 60
 
 [Eth.Istanbul]
-RequestTimeout = 10000
 BlockPeriod = 5
-Epoch = 30000
-Ceil2Nby3Block = 0
 
 [Shh]
 MaxMessageSize = 1048576
@@ -71,11 +68,11 @@ HTTPHost = "0.0.0.0"
 HTTPPort = 8545
 HTTPCors = ["*"]
 HTTPVirtualHosts = ["*"]
-HTTPModules = ["admin", "db", "eth", "debug", "miner", "net", "shh", "txpool", "personal", "web3", "istanbul"]
+HTTPModules = ["eth", "net"]
 WSHost = "0.0.0.0"
 WSPort = 8645
 WSOrigins = ["*"]
-WSModules = ["net", "web3", "eth", "shh"]
+WSModules = ["eth", "net"]
 GraphQLPort = 8547
 GraphQLVirtualHosts = ["localhost"]
 
