@@ -15,9 +15,9 @@ EWASMInterpreter = ""
 EVMInterpreter = ""
 
 [Eth.Miner]
-GasFloor = 700000000
-GasCeil = 800000000
-GasPrice = 1000000000
+GasFloor = 10000000
+GasCeil = 10000000
+GasPrice = 0
 Recommit = 3000000000
 Noverify = false
 
@@ -35,27 +35,23 @@ Locals = []
 NoLocals = false
 Journal = "transactions.rlp"
 Rejournal = 3600000000000
-PriceLimit = 1
-PriceBump = 10
+PriceLimit = 0
+PriceBump = 0
 AccountSlots = 16
 GlobalSlots = 4096
 AccountQueue = 64
 GlobalQueue = 1024
 Lifetime = 10800000000000
 TransactionSizeLimit = 64
-MaxCodeSize = 24
+MaxCodeSize = 35
 
 [Eth.GPO]
-Blocks = 20
-Percentile = 60
+Blocks = 0
+Percentile = 0
 
 [Eth.Istanbul]
+RequestTimeout = 10000
 BlockPeriod = 5
-
-[Shh]
-MaxMessageSize = 1048576
-MinimumAcceptedPOW = 2e-01
-RestrictConnectionBetweenLightClients = true
 
 [Node]
 UserIdent = "node"
@@ -90,8 +86,3 @@ EnableMsgEvents = false
 ReadTimeout = 30000000000
 WriteTimeout = 30000000000
 IdleTimeout = 120000000000
-
-[Dashboard]
-Host = "localhost"
-Port = 8080
-Refresh = 5000000000

@@ -21,7 +21,8 @@
                 "size": 35
             }
         ],
-        "isQuorum": true
+        "isQuorum": true,
+        "txnSizeLimit": 64
     },
     "nonce": "0x0",
     "timestamp": "0x5eda1803",
