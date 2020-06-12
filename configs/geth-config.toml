@@ -77,7 +77,6 @@ MaxPeers = 50
 NoDiscovery = true
 BootstrapNodes = []
 BootstrapNodesV5 = []
-StaticNodes = []
 TrustedNodes = []
 ListenAddr = ":21000"
 EnableMsgEvents = false
